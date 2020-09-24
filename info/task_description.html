@@ -30,10 +30,23 @@
     <p>
         <strong>Example:</strong>
     </p>
-    <pre class="brush: python">
-checkio("Lot 192.001 costs $1.000,94.") == "Lot 192.001 costs $1,000.94."
-checkio("$1,23 + $2,34 = $3,57.") == "$1.23 + $2.34 = $3.57."</pre>
+
+{% if interpreter.slug == "js-node" %}
+<pre class="brush: javascript">currencyStyle('$5.34') == '$5.34'
+currencyStyle('$5,34') == '$5.34'
+currencyStyle('$222,100,455.34') == '$222,100,455.34'
+currencyStyle('$222.100.455,34') == '$222,100,455.34'
+currencyStyle('$222,100,455') == '$222,100,455'
+</pre>
+{% else %}
+<pre class="brush: python">checkio('$5.34') == '$5.34'
+checkio('$5,34') == '$5.34'
+checkio('$222,100,455.34') == '$222,100,455.34'
+checkio('$222.100.455,34') == '$222,100,455.34'
+checkio('$222,100,455') == '$222,100,455'
+</pre>
 </div>
+{% endif %}
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
