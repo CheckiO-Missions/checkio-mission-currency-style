@@ -30,23 +30,31 @@ TESTS = {
             "answer": "$222,100,455"
         }, 
         {
-            "input": ["$222.100.455"],
-            "answer": "$222,100,455"
+            "input": ["222.100.455"],
+            "answer": "222.100.455"
         },
+        {
+            "input": ["This is an IP address 192.168.1.1"],
+            "answer": "This is an IP address 192.168.1.1"
+        },
+        {
+            "input": ["The price of bread is $1,50"],
+            "answer": "The price of bread is $1.50"
+        },
+        {
+            "input": ["The price of bread is 1,50 in some currency."],
+            "answer": "The price of bread is 1,50 in some currency."
+        },
+        {
+            "input": ["Is 1.050,25 bigger than 1,050?"],
+            "answer": "Is 1,050.25 bigger than 1,050?"
+        }         
+    ],
+    "Extra": [
         {
             "input": ["$4,13 + $5,24 = $9,37"],
             "answer": "$4.13 + $5.24 = $9.37"
         },
-        {
-            "input": ["Our movie tickets cost $12,20."],
-            "answer": "Our movie tickets cost $12.20."
-        },
-        {
-            "input": ["127.255.255.255"],
-            "answer": "127.255.255.255"
-        }          
-    ],
-    "Extra": [
         {
             "input": ["$4,13 + $1.005,24 = $1.009,37"],
             "answer": "$4.13 + $1,005.24 = $1,009.37"
@@ -62,6 +70,14 @@ TESTS = {
         {
             "input": ["$4,545.45 is less than $5.454,54."],
             "answer": "$4,545.45 is less than $5,454.54."
+        },
+        {
+            "input": ["Our movie tickets cost $12,20."],
+            "answer": "Our movie tickets cost $12.20."
+        },     
+        {
+            "input": ["127.255.255.255"],
+            "answer": "127.255.255.255"
         },
         {
             "input": [("Clayton Kershaw $31.000.000\n"

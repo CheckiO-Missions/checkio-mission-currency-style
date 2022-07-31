@@ -9,7 +9,7 @@ api.add_listener(
     CheckiOReferee(
         tests=TESTS,
         function_name={
-            "python": "currency_style",
+            "python": "checkio",
             "js": "currencyStyle"
         },
         cover_code={
