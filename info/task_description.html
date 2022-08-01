@@ -7,7 +7,7 @@
 <p>
     Many countries use different conventions for the thousands separator and decimal mark.  For example in the Netherlands
     one million one thousand two hundred and eighty one-hundredths is written as 1.001.200,80, but in the US this is written
-    as 1,001,200.80.  Use your coding skills to convert dollars in the first style (Netherlands, Germany, Russia, Turkey,
+    as 1,001,200.80.  Use your coding skills to convert dollars in the first style (Netherlands, Germany, Turkey,
     Brazil, and others) to the second style (US, UK, Canada, China, Japan, Mexico, and others).
 </p>
 
@@ -31,21 +31,7 @@
         <strong>Example:</strong>
     </p>
 
-{% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">currencyStyle('$5.34') == '$5.34'
-currencyStyle('$5,34') == '$5.34'
-currencyStyle('$222,100,455.34') == '$222,100,455.34'
-currencyStyle('$222.100.455,34') == '$222,100,455.34'
-currencyStyle('$222,100,455') == '$222,100,455'
-</pre>
-{% else %}
-<pre class="brush: python">checkio('$5.34') == '$5.34'
-checkio('$5,34') == '$5.34'
-checkio('$222,100,455.34') == '$222,100,455.34'
-checkio('$222.100.455,34') == '$222,100,455.34'
-checkio('$222,100,455') == '$222,100,455'
-</pre>
-{% endif %}
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 <p class="for_info_only">

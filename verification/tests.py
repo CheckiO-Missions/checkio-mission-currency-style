@@ -10,63 +10,79 @@ Each test is dict with
 TESTS = {
     "Basics": [
         {
-            "input": "$5.34",
+            "input": ["$5.34"],
             "answer": "$5.34"
         },
         {
-            "input": "$5,34",
+            "input": ["$5,34"],
             "answer": "$5.34"
         },
         {
-            "input": "$222,100,455.34",
+            "input": ["$222,100,455.34"],
             "answer": "$222,100,455.34"
         },
         {
-            "input": "$222.100.455,34",
+            "input": ["$222.100.455,34"],
             "answer": "$222,100,455.34"
         }, 
         {
-            "input": "$222,100,455",
+            "input": ["$222,100,455"],
             "answer": "$222,100,455"
         }, 
         {
-            "input": "$222.100.455",
-            "answer": "$222,100,455"
-        }          
+            "input": ["222.100.455"],
+            "answer": "222.100.455"
+        },
+        {
+            "input": ["This is an IP address 192.168.1.1"],
+            "answer": "This is an IP address 192.168.1.1"
+        },
+        {
+            "input": ["The price of bread is $1,50"],
+            "answer": "The price of bread is $1.50"
+        },
+        {
+            "input": ["The price of bread is 1,50 in some currency."],
+            "answer": "The price of bread is 1,50 in some currency."
+        },
+        {
+            "input": ["Is 1.050,25 bigger than 1,050?"],
+            "answer": "Is 1,050.25 bigger than 1,050?"
+        }         
     ],
     "Extra": [
         {
-            "input": "$4,13 + $5,24 = $9,37",
+            "input": ["$4,13 + $5,24 = $9,37"],
             "answer": "$4.13 + $5.24 = $9.37"
         },
         {
-            "input": "$4,13 + $1.005,24 = $1.009,37",
+            "input": ["$4,13 + $1.005,24 = $1.009,37"],
             "answer": "$4.13 + $1,005.24 = $1,009.37"
         },
         {
-            "input": "$8.000 - $8.000 = $0",
+            "input": ["$8.000 - $8.000 = $0"],
             "answer": "$8,000 - $8,000 = $0"
         },
         {
-            "input": "$4.545,45 is less than $5,454.54.",
+            "input": ["$4.545,45 is less than $5,454.54."],
             "answer": "$4,545.45 is less than $5,454.54."
         },
         {
-            "input": "$4,545.45 is less than $5.454,54.",
+            "input": ["$4,545.45 is less than $5.454,54."],
             "answer": "$4,545.45 is less than $5,454.54."
         },
         {
-            "input": "Our movie tickets cost $12,20.",
+            "input": ["Our movie tickets cost $12,20."],
             "answer": "Our movie tickets cost $12.20."
         },     
         {
-            "input": "127.255.255.255",
+            "input": ["127.255.255.255"],
             "answer": "127.255.255.255"
         },
         {
-            "input": ("Clayton Kershaw $31.000.000\n"
-                    "Zack Greinke   $27.000.000\n"
-                    "Adrian Gonzalez $21.857.143\n"),
+            "input": [("Clayton Kershaw $31.000.000\n"
+                    "Zack Greinke   $27,000,000\n"
+                    "Adrian Gonzalez $21.857.143\n")],
             "answer": ("Clayton Kershaw $31,000,000\n"
                     "Zack Greinke   $27,000,000\n"
                     "Adrian Gonzalez $21,857,143\n")
