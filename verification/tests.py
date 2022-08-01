@@ -46,8 +46,8 @@ TESTS = {
             "answer": "The price of bread is 1,50 in some currency."
         },
         {
-            "input": ["Is 1.050,25 bigger than 1,050?"],
-            "answer": "Is 1,050.25 bigger than 1,050?"
+            "input": ["Is $1.050,25 bigger than $1,050?"],
+            "answer": "Is $1,050.25 bigger than $1,050?"
         }         
     ],
     "Extra": [
