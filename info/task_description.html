@@ -17,18 +17,18 @@
 </p>
 
 <p>
-    <strong>Input: </strong> A string containing dollar amounts to be converted.
+    <strong>Input:</strong> A string containing dollar amounts to be converted.
 </p>
 
 <p>
-    <strong>Output: </strong> A string with converted currencies.
+    <strong>Output:</strong> A string with converted currencies.
 </p>
 
 
 <div class="for_info_only">
 
     <p>
-        <strong>Example:</strong>
+        <strong>Examples:</strong>
     </p>
 
     <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
@@ -40,9 +40,11 @@
 </p>
 
 <p>
-    <strong>Precondition:</strong>
-    0 &lt; len(text) &le; 1000;<br>
-    len(fractional_part_of_currency) in {0,2};<br>
-    all(s[-1].isdigit() for s in currency_substrings);<br>
-    all(s[0] == '$' for s in currency_substrings)<br>
+    <strong>Preconditions:</strong>
+    <ul>
+    <li><i>0 &lt; len(text) &le; 1000;</i></li>
+    <li><i>len(fractional_part_of_currency) in {0,2};</i></li>
+    <li><i>all(s[-1].isdigit() for s in currency_substrings);</i></li>
+    <li><i>all(s[0] == '$' for s in currency_substrings)</i></li>
+    </ul>
 </p>

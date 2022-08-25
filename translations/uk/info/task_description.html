@@ -17,11 +17,11 @@
 </p>
 
 <p>
-    <strong>Вхідні дані: </strong> Рядок, що може містити суму в доларах.
+    <strong>Вхідні дані:</strong> Рядок, що може містити суму в доларах.
 </p>
 
 <p>
-    <strong>Output: </strong> Рядок із конвертованим написом суми в доларах.
+    <strong>Вихідні дані:</strong> Рядок із конвертованим написом суми в доларах.
 </p>
 
 
@@ -41,8 +41,10 @@
 
 <p>
     <strong>Передумови:</strong>
-    0 &lt; len(text) &le; 1000;<br>
-    len(fractional_part_of_currency) in {0,2};<br>
-    all(s[-1].isdigit() for s in currency_substrings);<br>
-    all(s[0] == '$' for s in currency_substrings)<br>
+    <ul>
+    <li><i>0 &lt; len(text) &le; 1000;</i></li>
+    <li><i>len(fractional_part_of_currency) in {0,2};</i></li>
+    <li><i>all(s[-1].isdigit() for s in currency_substrings);</i></li>
+    <li><i>all(s[0] == '$' for s in currency_substrings)</i></li>
+    </ul>
 </p>

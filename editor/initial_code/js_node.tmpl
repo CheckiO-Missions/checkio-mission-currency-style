@@ -4,7 +4,7 @@
 {% block start %}
 function currencyStyle(line: string): string {
     // your code here
-    return 0;
+    return "";
 }
 {% endblock start %}
 
@@ -17,7 +17,8 @@ console.log(currencyStyle('$5.34'));
 {% block tests %}
 {% for t in tests %}
 assert.strictEqual({% block call %}currencyStyle({{t.input|j_args}})
-{% endblock %}, {% block result %}{{t.answer|j}}{% endblock %});{% endfor %}
+{% endblock %}, {% block result %}{{t.answer|j}}{% endblock %});
+{% endfor %}
 {% endblock %}
 
 {% block final %}
