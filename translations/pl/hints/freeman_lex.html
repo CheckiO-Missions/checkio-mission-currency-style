@@ -1,0 +1,137 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Nie mam pojęcia, jak zacząć rozwiązywać tę misję.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę zapalić 💡! W rozwiązaniu użyjemy modułu wyrażeń regularnych. Muszą Państwo utworzyć wzorzec dopasowujący bloki walutowe pierwszego stylu i zastąpić wszystkie bloki tym samym tekstem, ale zmienionym na drugi styl.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, od czego powinienem zacząć?
+    </div>
+    <div class="answer">
+        <p>
+            Najpierw proszę zaimportować moduł <a target="_blank" href="https://docs.python.org/3/library/re.html">re</a> do pracy z wyrażeniami regularnymi.
+        </p>
+        <pre class="brush: python">
+import re
+        </pre>
+        <p>
+            Państwa funkcja powinna zwracać tekst ze zmienionym stylem waluty. Aby zastąpić części tekstu i zwrócić zmieniony, moduł ma funkcję <a target="_blank" href="https://docs.python.org/3/library/re.html#re.sub">re.sub()</a>. Proszę więc zamienić każdy blok pasujący do <b class="code">pattern</b> ze zmienionym blokiem <b class="code">reform</b> w podanym <b class="code">text</b>. Proszę to napisać. 
+        </p>
+        <pre class="brush: python">
+return re.sub(pattern, reform, text)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę mi pomóc napisać poprawny wzór.
+    </div>
+    <div class="answer">
+        <p>
+            Tak, robimy to krok po kroku, aby lepiej zrozumieć. Pana blok walutowy zawsze zaczyna się od <b class="code">$</b>. Ale ponieważ ten znak ma specjalne znaczenie w wyrażeniach regularnych, aby zignorować to specjalne znaczenie i znaleźć dokładnie ten znak, proszę użyć znaku ucieczki <b class="code">\</b> przed.
+        </p>
+        <pre class="brush: python">
+"\$"
+        </pre>
+        <p>
+            Teraz należy znaleźć pierwszy blok cyfr przed pierwszym separatorem, który może mieć od 1 do 3 cyfr, w zależności od liczby (np. $1, $12, $123). Znak <b class="code">d</b> oznacza znalezienie cyfr, ale ponieważ używamy jego specjalnego znaczenia (nie szukamy samej litery "d"), potrzebujemy przed nim znaku ucieczki. Proszę ustawić liczbę powtórzeń w nawiasach klamrowych.
+        </p>
+        <pre class="brush: python">
+"d{1,3}"
+        </pre>
+        <p>
+            Liczba może być duża, więc tutaj może być zero lub więcej bloków kropki i trzech cyfr. Proszę użyć znaku escape dla kropki i cyfry, ustawić liczbę powtórzeń dla cyfr i całego bloku.
+        </p>
+        <pre class="brush: python">
+"(\.\d{3})*"
+        </pre>
+        <p>
+            Można mieć zero lub jeden blok przecinka i dwie cyfry jako centy.
+        </p>
+        <pre class="brush: python">
+"(,\d{2})?"
+        </pre>
+        <p>
+            I wreszcie, musi to być koniec liczby - nie żadne cyfry po nim.
+        </p>
+        <pre class="brush: python">
+"(?!\d)"
+        </pre>
+        <p>Proszę połączyć wszystkie powyższe ciągi, aby otrzymać <b class="code">pattern</b>.</p>
+        <pre class="brush: python">
+pattern = "\$\d{1,3}(\.\d{3})*(,\d{2})?(?!\d)"
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wow! Wszystko jest jasne po wyjaśnieniu! Jak utworzyć zmienioną wersję z każdego meczu?
+    </div>
+    <div class="answer">
+        <p>
+            Nasz <b class="code">reform</b> może być funkcją! W tym przypadku zostanie ona zastosowana dla każdego niepokrywającego się wystąpienia wzorca jako <b class="code">match</b>. Mogą Państwo napisać funkcję za pomocą funkcji <a target="_blank" href="https://www.w3schools.com/python/python_lambda.asp">lambda</a>.
+        </p>
+        <pre class="brush: python">
+reform = lambda match: ...
+        </pre>
+        <p>
+            Ponieważ wynikiem wyszukiwania (<b class="code">match</b>) jest sam obiekt, należy określić, że potrzebny jest tylko cały blok ciągu znaków. W tym celu proszę użyć <b class="code">group()</b> lub <b class="code">group(0)</b>. Jeśli mają Państwo wewnętrzne grupy w swoim wzorcu i potrzebują ich bezpośrednio, mogą Państwo określić <b class="code">group(1), group(2) etc.</b>
+        </p>
+        <pre class="brush: python">
+reform = lambda match: match.group()
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, jak zastąpić znaki w dopasowaniu?
+    </div>
+    <div class="answer">
+        <p>
+            Ponieważ musi Pan zamienić dwa znaki według ich miejsc w ciągu znaków, dobrze jest użyć metody <a target="_blank" href="https://www.w3schools.com/python/ref_string_translate.asp">str.translate()</a> i <a target="_blank" href="https://www.w3schools.com/python/ref_string_maketrans.asp">str.maketrans()</a>, aby określić znaki bez kodów <b>ascii</b>.
+        </p>
+        <pre class="brush: python">
+reform = lambda match: match.group().translate(str.maketrans(',.', '.,'))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak więc powinno wyglądać moje ostateczne rozwiązanie?
+    </div>
+    <div class="answer">
+        <p>
+            Wystarczy połączyć poprzednie podpowiedzi, aby zawinąć kod w wyrażenie funkcji. Używanie podpowiedzi typu dla danych wejściowych i wyjściowych jest wysoce zalecane.
+        </p>
+        <p>Oto całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def checkio(text: str) -> str:
+    
+    pattern = '\$\d{1,3}(\.\d{3})*(,\d{2})?(?!\d)'
+    reform = lambda match: match.group().translate(str.maketrans(',.', '.,'))
+    
+    return re.sub(pattern, reform, text)
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa jak należy!
+    </div>
+    <div class="answer">
+        Miło mi to słyszeć 👍!
+    </div>
+</div>
+</body>

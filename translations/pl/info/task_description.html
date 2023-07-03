@@ -1,0 +1,50 @@
+<p class="story">
+    "Cóż, znowu nadszedł ten czas w miesiącu. Czeki płacowe dla naszych pracowników, 
+     które wymagają Państwa podpisów. I proszę nie zapomnieć podpisać tych dużych!"<br>
+    -- Zamieniamy się miejscami
+</p>
+ 
+<p style="text-align: justify;">
+    Wiele krajów stosuje różne konwencje dla separatora tysięcy i znaku dziesiętnego.  Na przykład w Holandii
+    milion tysiąc dwieście osiemdziesiąt setnych zapisuje się jako 1.001.200,80, ale w Stanach Zjednoczonych jest to zapisywane jako
+    jako 1,001,200.80.  Proszę wykorzystać swoje umiejętności kodowania, aby przeliczyć dolary w pierwszym stylu (Holandia, Niemcy, Turcja,
+    Brazylia i inne) na drugi styl (USA, Wielka Brytania, Kanada, Chiny, Japonia, Meksyk i inne).
+</p>
+
+<p>
+    Należy konwertować tylko kwoty walut w dolarach: $1,234.50 na $1,234.50, $1,000 na $1,000 i $4,57 na $4,57.
+    Proszę przypadkowo nie konwertować adresu IP routera 192.168.1.1.  Należy pozostawić walutę w stylu amerykańskim bez zmian.
+</p>
+
+<p>
+   <strong>Dane wejściowe:</strong> Ciąg znaków <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Wyjście:</strong> Ciąg znaków <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+
+<div class="for_info_only">
+
+    <p>
+        <strong>Przykłady:</strong>
+    </p>
+
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+<p class="for_info_only">
+   <strong>Jak jest używany:</strong>
+    Jest to ćwiczenie dotyczące pracy z ciągami znaków i korzystania z biblioteki standardowej Pythona.
+</p>
+
+<p>
+    <strong>Warunki wstępne:</strong>
+    <ul>
+    <li><i>0 &lt; len(text) &le; 1000;</i></li>
+    <li><i>len(fractional_part_of_currency) in {0,2};</i></li>
+    <li><i>all(s[-1].isdigit() for s in currency_substrings);</i></li>
+    <li><i>all(s[0] == '$' for s in currency_substrings)</i></li>
+    </ul>
+</p>
