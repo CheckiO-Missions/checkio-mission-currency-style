@@ -48,7 +48,7 @@ TESTS = {
         {
             "input": ["The price of bread is 1,50 in some currency."],
             "answer": "The price of bread is 1,50 in some currency."
-        }        
+        },        
     ],
     "Extra": [
         {
@@ -86,6 +86,6 @@ TESTS = {
             "answer": ("Clayton Kershaw $31,000,000\n"
                     "Zack Greinke   $27,000,000\n"
                     "Adrian Gonzalez $21,857,143\n")
-        }        
+        },        
     ]
 }
