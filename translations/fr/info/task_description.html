@@ -1,0 +1,50 @@
+<p class="story">
+    "C'est à nouveau la période du mois. Les chèques de paie pour nos employés, 
+     qui nécessitent vos signatures. Et n'oubliez pas de signer les plus gros!"<br>
+    -- Lieux d'échange
+</p>
+ 
+<p style="text-align: justify;">
+    De nombreux pays utilisent des conventions différentes pour le séparateur de milliers et la marque décimale.  Par exemple, aux Pays-Bas
+    un million un mille deux cent quatre-vingts centièmes s'écrit 1.001.200,80, alors qu'aux États-Unis, cela s'écrit
+    1 001 200,80.  Utilisez vos compétences en matière de codage pour convertir les dollars du premier style (Pays-Bas, Allemagne, Turquie, Brésil et autres) en dollars du second style,
+    Brésil et autres) dans le second style (États-Unis, Royaume-Uni, Canada, Chine, Japon, Mexique et autres).
+</p>
+
+<p>
+    Seuls les montants en dollars doivent être convertis: 1,234,50 $ en 1 234,50 $, 1 000 $ en 1 000 $ et 4,57 $ en 4,57 $.
+    Ne convertissez pas accidentellement l'adresse IP de votre routeur 192.168.1.1.  Vous devez laisser inchangées les devises notées dans le style américain.
+</p>
+
+<p>
+   <strong>Entrée:</strong> Une chaîne de caractères <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Sortie:</strong> Une chaîne <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+
+<div class="for_info_only">
+
+    <p>
+        <strong>Exemples:</strong>
+    </p>
+
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+<p class="for_info_only">
+   <strong>Comment l'utiliser:</strong>
+    Il s'agit d'un exercice permettant de travailler avec des chaînes de caractères et d'utiliser la bibliothèque standard de Python.
+</p>
+
+<p>
+    <strong>Conditions préalables:</strong>
+    <ul>
+    <li><i>0 &lt; len(text) &le; 1000;</i></li>
+    <li><i>len(fraction_partie_de_la_devise) in {0,2};</i></li>
+    <li><i>all(s[-1].isdigit() for s in currency_substrings);</i></li>
+    <li><i>all(s[0] == '$' for s in currency_substrings)</i></li>
+    </ul>
+</p>
