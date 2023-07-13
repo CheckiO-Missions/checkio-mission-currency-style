@@ -1,0 +1,50 @@
+<p class="story">
+    "又到了每月的这个时候。我们员工的工资支票、 
+     需要您的签名。别忘了在大额支票上签字！"<br>
+    -- 交易场所
+</p>
+ 
+<p style="text-align: justify;">
+    许多国家对千位分隔符和小数点使用不同的约定。  例如，在荷兰
+    一百万零二百八十百分之一被写成1.001.200,80，但在美国则写成1,001,200.80。
+    1,001,200.80。  使用您的编码技能将第一种样式的美元（荷兰、德国、土耳其、巴西和其他国家）转换成第二种样式的美元、
+    巴西和其他国家）转换成第二种样式（美国、英国、加拿大、中国、日本、墨西哥和其他国家）。
+</p>
+
+<p>
+    只需转换以美元为单位的货币金额：1.234.50美元转换为1,234.50美元，1.000美元转换为1,000美元，4,57美元转换为4.57美元。
+    不要不小心将路由器的IP地址192.168.1.1转换成美元。  您应该保持美式风格中标注的货币不变。
+</p>
+
+<p>
+   <strong>输入：</strong>字符串 <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>输出</strong>字符串 <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+
+<div class="for_info_only">
+
+    <p>
+        <strong>示例：</strong>
+    </p>
+
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+<p class="for_info_only">
+   <strong>如何使用：</strong>
+    这是一个使用字符串和 Python 标准库的练习。
+</p>
+
+<p>
+    <strong>前提条件</strong>
+    <ul>
+    <li><i>0 &lt; len(text) &le; 1000；</i></li>
+    <li><i>len(fractional_part_of_currency) in {0,2}；</i></li>
+    <li><i>all(s[-1].isdigit() for s in currency_substrings)；</i></li>
+    <li><i>all(s[0] == '$' for s in currency_substrings)</i></li>
+    </ul>
+</p>

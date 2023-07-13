@@ -1,0 +1,137 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这项任务。
+    </div>
+    <div class="answer">
+        <p>
+            点亮💡！我们将在解决方案中使用正则表达式模块。您需要创建一个模式来匹配第一种样式的货币区块，并用相同的文本替换所有区块，但要更改为第二种样式。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好吧，我应该从什么开始呢？
+    </div>
+    <div class="answer">
+        <p>
+            首先，您需要导入<a target="_blank" href="https://docs.python.org/3/library/re.html">re</a> 模块，以便使用正则表达式。
+        </p>
+        <pre class="brush: python">
+import re
+        </pre>
+        <p>
+            您的函数应该返回改变了货币样式的文本。要替换部分文本并返回更改后的文本，模块有<a target="_blank" href="https://docs.python.org/3/library/re.html#re.sub">re.sub()</a> 函数。因此，您需要在给定的<b class="code">text</b> 中用更改后的<b class="code">reform</b> 块更改与<b class="code">pattern</b> 匹配的每个块。让我们来写 
+        </p>
+        <pre class="brush: python">
+return re.sub(pattern, reform, text)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        帮助我写出正确的模式。
+    </div>
+    <div class="answer">
+        <p>
+            是的，我们一步一步地做，以获得更好的理解。您的货币块总是以<b class="code">$</b> 开始。但是由于这个字符在正则表达式中具有特殊含义，为了忽略这个特殊含义并准确找到这个字符，请在前面使用转义字符<b class="code">\</b> 。
+        </p>
+        <pre class="brush: python">
+"\$"
+        </pre>
+        <p>
+            现在，您需要在第一个分隔符之前找到第一个数字块，根据数字的不同，数字块可能有1到3位数字（例如，1美元，12美元，123美元）。字符<b class="code">d</b> 代表查找数字，但是由于我们使用了它的特殊含义（不是查找字母 "d "本身），我们需要在它之前使用转义字符。在大括号中设置重复次数。
+        </p>
+        <pre class="brush: python">
+"d{1,3}"
+        </pre>
+        <p>
+            数字可能很大，所以这里可能有零个或更多的点和三位数字块。对点和数字使用转义字符，对数字和整个数字块设置重复次数。
+        </p>
+        <pre class="brush: python">
+"(\.\d{3})*"
+        </pre>
+        <p>
+            您可能有零个或一个逗号块和两位数作为美分。
+        </p>
+        <pre class="brush: python">
+"(,\d{2})?"
+        </pre>
+        <p>
+            最后，这必须是数字的末尾，而不是后面的数字。
+        </p>
+        <pre class="brush: python">
+"(?!\d)"
+        </pre>
+        <p>将以上所有字符串连接起来，得到<b class="code">pattern</b> 。</p>
+        <pre class="brush: python">
+pattern = "\$\d{1,3}(\.\d{3})*(,\d{2})?(?!\d)"
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        哇一切都解释清楚了！如何从每场比赛中创建一个更改的版本？
+    </div>
+    <div class="answer">
+        <p>
+            我们的<b class="code">reform</b> 可能是一个函数！在这种情况下，它将应用于每一个非重叠出现的模式，如<b class="code">match</b> 。您可以使用<a target="_blank" href="https://www.w3schools.com/python/python_lambda.asp">lambda</a> 函数编写该函数。
+        </p>
+        <pre class="brush: python">
+reform = lambda match: ...
+        </pre>
+        <p>
+            由于查找 (<b class="code">match</b>) 的结果本身是一个对象，您需要指定您只需要一个完整的字符串块。为此请使用<b class="code">group()</b> 或<b class="code">group(0)</b> 。如果您的模式中有内部组并直接需要它们，您可以指定<b class="code">group(1), group(2) etc.</b>
+        </p>
+        <pre class="brush: python">
+reform = lambda match: match.group()
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何替换匹配中的字符？
+    </div>
+    <div class="answer">
+        <p>
+            因为您需要替换两个字符在字符串中的位置，所以最好使用<a target="_blank" href="https://www.w3schools.com/python/ref_string_translate.asp">str.translate()</a> 方法和<a target="_blank" href="https://www.w3schools.com/python/ref_string_maketrans.asp">str.maketrans()</a> 来指定没有<b>ascii</b> 代码的字符。
+        </p>
+        <pre class="brush: python">
+reform = lambda match: match.group().translate(str.maketrans(',.', '.,'))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            您只需将之前的提示代码合并到函数表达式中。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>这里是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def checkio(text: str) -> str:
+    
+    pattern = '\$\d{1,3}(\.\d{3})*(,\d{2})?(?!\d)'
+    reform = lambda match: match.group().translate(str.maketrans(',.', '.,'))
+    
+    return re.sub(pattern, reform, text)
+        </pre>
+        </div>
+        <p>点击任务菜单<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解了更多！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息👍！
+    </div>
+</div>
+</body>
