@@ -1,0 +1,137 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.
+    </div>
+    <div class="answer">
+        <p>
+            Licht an 💡! Wir werden in der Lösung das Modul für reguläre Ausdrücke verwenden. Sie müssen ein Muster erstellen, das mit den Währungsblöcken des ersten Stils übereinstimmt, und alle Blöcke durch denselben Text ersetzen, der jedoch in den zweiten Stil geändert wurde.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, womit soll ich anfangen?
+    </div>
+    <div class="answer">
+        <p>
+            Zunächst müssen Sie das Modul <a target="_blank" href="https://docs.python.org/3/library/re.html">re</a> für die Arbeit mit regulären Ausdrücken importieren.
+        </p>
+        <pre class="brush: python">
+import re
+        </pre>
+        <p>
+            Ihre Funktion sollte den Text mit dem geänderten Währungsstil zurückgeben. Um Teile des Textes zu ersetzen und den geänderten Text zurückzugeben, verfügt das Modul über die Funktion <a target="_blank" href="https://docs.python.org/3/library/re.html#re.sub">re.sub()</a>. Sie müssen also jeden Block, der mit <b class="code">pattern</b> übereinstimmt, durch den geänderten Block <b class="code">reform</b> im angegebenen <b class="code">text</b> ersetzen. Lassen Sie uns das schreiben. 
+        </p>
+        <pre class="brush: python">
+return re.sub(pattern, reform, text)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Helfen Sie mir, das richtige Muster zu schreiben.
+    </div>
+    <div class="answer">
+        <p>
+            Ja, wir machen es Schritt für Schritt, um ein besseres Verständnis zu erlangen. Ihr Währungsblock beginnt immer mit <b class="code">$</b>. Da dieses Zeichen jedoch in regulären Ausdrücken eine besondere Bedeutung hat, verwenden Sie das Escape-Zeichen <b class="code">\</b>, um diese besondere Bedeutung zu ignorieren und genau dieses Zeichen zu finden.
+        </p>
+        <pre class="brush: python">
+"\$"
+        </pre>
+        <p>
+            Nun müssen Sie einen ersten Block von Ziffern vor dem ersten Trennzeichen finden, der je nach Nummer 1 bis 3 Ziffern haben kann (z.B. $1, $12, $123). Das Zeichen <b class="code">d</b> steht für die Suche nach Ziffern, aber da wir seine spezielle Bedeutung verwenden (wir suchen nicht den Buchstaben "d" selbst), brauchen wir vorher ein Escape-Zeichen. Legen Sie die Anzahl der Wiederholungen in geschweiften Klammern fest.
+        </p>
+        <pre class="brush: python">
+"d{1,3}"
+        </pre>
+        <p>
+            Die Zahl kann groß sein, so dass Sie hier null oder mehr Blöcke mit Punkt und drei Ziffern haben können. Verwenden Sie Escape-Zeichen für Punkt und Ziffer, setzen Sie die Anzahl der Wiederholungen für Ziffern und den gesamten Block.
+        </p>
+        <pre class="brush: python">
+"(\.\d{3})*"
+        </pre>
+        <p>
+            Sie können null oder einen Block mit Komma und zwei Ziffern als Cents haben.
+        </p>
+        <pre class="brush: python">
+"(,\d{2})?"
+        </pre>
+        <p>
+            Und schließlich muss dies das Ende der Zahl sein - keine Nachkommastellen.
+        </p>
+        <pre class="brush: python">
+"(?!\d)"
+        </pre>
+        <p>Verbinden Sie alle obigen Zeichenfolgen miteinander, um <b class="code">pattern</b> zu erhalten.</p>
+        <pre class="brush: python">
+pattern = "\$\d{1,3}(\.\d{3})*(,\d{2})?(?!\d)"
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wow! Alles ist klar, wenn man es erklärt! Wie kann man aus jedem Spiel eine geänderte Version erstellen?
+    </div>
+    <div class="answer">
+        <p>
+            Unser <b class="code">reform</b> kann eine Funktion sein! In diesem Fall würde sie auf jedes nicht überlappende Vorkommen des Musters <b class="code">match</b> angewendet werden. Sie können die Funktion mit der Funktion <a target="_blank" href="https://www.w3schools.com/python/python_lambda.asp">lambda</a> schreiben.
+        </p>
+        <pre class="brush: python">
+reform = lambda match: ...
+        </pre>
+        <p>
+            Da das Ergebnis der Suche (<b class="code">match</b>) selbst ein Objekt ist, müssen Sie angeben, dass Sie nur einen ganzen String-Block benötigen. Verwenden Sie dazu <b class="code">group()</b> oder <b class="code">group(0)</b>. Wenn Sie innere Gruppen in Ihrem Muster haben und diese direkt benötigen, können Sie angeben <b class="code">group(1), group(2) etc.</b>
+        </p>
+        <pre class="brush: python">
+reform = lambda match: match.group()
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, wie ersetzt man Zeichen in der Übereinstimmung?
+    </div>
+    <div class="answer">
+        <p>
+            Da Sie zwei Zeichen durch ihre Position in der Zeichenkette ersetzen müssen, ist es gut, die Methode <a target="_blank" href="https://www.w3schools.com/python/ref_string_translate.asp">str.translate()</a> zu verwenden und <a target="_blank" href="https://www.w3schools.com/python/ref_string_maketrans.asp">str.maketrans()</a>, um Zeichen ohne <b>ascii</b> Codes anzugeben.
+        </p>
+        <pre class="brush: python">
+reform = lambda match: match.group().translate(str.maketrans(',.', '.,'))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie sollte also meine endgültige Lösung aussehen?
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur die vorherigen Hinweise verbinden und Ihren Code in einen Funktionsausdruck einpacken. Die Verwendung von Typ-Hinweisen für Eingabe- und Ausgabedaten wird dringend empfohlen.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+import re
+
+
+def checkio(text: str) -> str:
+    
+    pattern = '\$\d{1,3}(\.\d{3})*(,\d{2})?(?!\d)'
+    reform = lambda match: match.group().translate(str.maketrans(',.', '.,'))
+    
+    return re.sub(pattern, reform, text)
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Menü Mission und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert einwandfrei!
+    </div>
+    <div class="answer">
+        Freut mich zu hören 👍!
+    </div>
+</div>
+</body>
