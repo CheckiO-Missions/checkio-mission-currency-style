@@ -1,0 +1,50 @@
+<p class="story">
+    "Nun, es ist wieder die Zeit des Monats. Die Gehaltsschecks für unsere Mitarbeiter, 
+     die von Ihnen unterschrieben werden müssen. Und vergessen Sie nicht, die großen Schecks zu unterschreiben!"<br>
+    -- Tauschbörsen
+</p>
+ 
+<p style="text-align: justify;">
+    Viele Länder verwenden unterschiedliche Konventionen für das Tausendertrennzeichen und das Dezimalkomma.  Zum Beispiel in den Niederlanden
+    eine Million eintausendzweihundertachtzig Einhundertstel als 1.001.200,80 geschrieben, aber in den USA wird dies als
+    als 1.001.200,80.  Nutzen Sie Ihre Programmierkenntnisse, um Dollars in der ersten Schreibweise (Niederlande, Deutschland, Türkei,
+    Brasilien und andere) in den zweiten Stil (USA, Großbritannien, Kanada, China, Japan, Mexiko und andere).
+</p>
+
+<p>
+    Es sollen nur Währungsbeträge in Dollar umgerechnet werden: $1.234,50 in $1.234,50, $1.000 in $1.000 und $4,57 in $4,57.
+    Konvertieren Sie nicht versehentlich die IP-Adresse Ihres Routers 192.168.1.1.  Sie sollten die im US-Stil notierte Währung unverändert lassen.
+</p>
+
+<p>
+   <strong>Eingabe:</strong> Eine Zeichenkette <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Ausgabe:</strong> Eine Zeichenkette <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+
+<div class="for_info_only">
+
+    <p>
+        <strong>Beispiele:</strong>
+    </p>
+
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+<p class="for_info_only">
+   <strong>Wie sie verwendet wird:</strong>
+    Dies ist eine Übung zur Arbeit mit Strings und zur Verwendung der Python-Standardbibliothek.
+</p>
+
+<p>
+    <strong>Vorbedingungen:</strong>
+    <ul>
+    <li><i>0 &lt; len(text) &le; 1000;</i></li>
+    <li><i>len(Bruchteil_der_Währung) in {0,2};</i></li>
+    <li><i>all(s[-1].isdigit() for s in currency_substrings);</i></li>
+    <li><i>all(s[0] == '$' für s in currency_substrings)</i></li>
+    </ul>
+</p>
